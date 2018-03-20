@@ -1,11 +1,12 @@
 import React from 'react';
 
-export default function Skillslist({profiles}) {
+export default function Skillslist({profile}) {
     return <section className="skills-container">
-        <h4>Skills</h4>
-        <ul className="skills-list"> 
-            {profiles.map(profile => <li>{profile.skills}</li>
+        <h4>Skills</h4> 
+        <ul>
+            {profile.skills.map(skill => <li className="skills-list">
+            {skill}</li>
             )}
-        </ul>
+            </ul>
       </section>
 }
