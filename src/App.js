@@ -15,7 +15,7 @@ class App extends Component {
           <main>
             <section>
               <ul id='profiles'>
-                  <Profiles profiles={this.state.profiles}/>
+                  <Profiles />
               </ul>
             </section>
           </main>

@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import Skillslist from './Skillslist'
 
-class Profiles extends Component() {
+class Profiles extends Component {
     constructor(props) {
         super(props)
         this.state = {profiles: [],
-        listPop: false
+        isHidden: true
         }
     }
     
@@ -26,12 +26,13 @@ class Profiles extends Component() {
 
     showList(e) {
         e.preventDefault()
-        this.setState({listPop: !this.state.listPop})
+        this.setState({isHidden: !this.state.isHidden})
+
     }
     
     render() {
     return <li>
-        {this.state.profiles.map(profile => <div className="profile-card" onClick={showList}>
+        {this.state.profiles.map(profile => <div className="profile-card" onClick={this.showList.bind(this)}>
         <header className="profile-header">
             <img src={profile.image} />
             <h2>{profile.name}</h2> 
