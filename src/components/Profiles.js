@@ -1,47 +1,68 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Skillslist from './Skillslist'
 
 class Profiles extends Component {
     constructor(props) {
         super(props)
-        this.state = {profiles: [],
-        isHidden: true
+        this.state = {
+            dinos: []
         }
     }
-    
-    findProfiles() {
-        fetch('/dinosaurs.json', {
-          headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          } 
+
+    componentDidMount() {
+        fetch('./dinosaurs.json')
+            .then(response => {
+                return response.json()
+            })
+            .then(dinosaurs => {
+                let dinos = JSON.parse(JSON.stringify(dinosaurs))
+                dinos.map((dino) => {
+                    return dino.SkillsListVisible = true
+                })
+                this.setState({
+                    dinos
+                })
+            })
+    }
+
+    clickHandler(index) {
+        let newState = JSON.parse(JSON.stringify(this.state.dinos))
+        newState[index].SkillsListVisible = !newState[index].SkillsListVisible
+        this.setState({
+            dinos: newState
         })
-        .then(response => response.json())
-        .then(profiles => this.setState({profiles}))
-    }
-    
-    componentWillMount() {
-        this.findProfiles()
     }
 
-    showList(e) {
-        e.preventDefault()
-        this.setState({isHidden: !this.state.isHidden})
-
-    }
-    
+ 
     render() {
-    return <li>
-        {this.state.profiles.map(profile => <div className="profile-card" onClick={this.showList.bind(this)}>
-        <header className="profile-header">
-            <img src={profile.image} />
-            <h2>{profile.name}</h2> 
-            </header>
-            <Skillslist profile={profile}/>
-            </div>
-            )}
-            </li>
+        return (
+            <section id="profiles-container">
+                <h2>Profiles</h2>
+                <ul id="profiles">
+                    {this.state.dinos.map((dinosaur, index) => {
+                        return (
+                            <li key={index} onClick={() => this.clickHandler(index)}>
+                                <div className="profile-card">
+                                    <header className="profile-header" >
+                                        <img src={dinosaur.image} alt={dinosaur.name} />
+                                        <h2>{dinosaur.name}</h2>
+                                    </header>
+                                    <div>
+                                        {
+                                            dinosaur.SkillsListVisible
+                                                ? false :
+                                                <Skillslist profile={dinosaur} />
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </section>
+        )
     }
-}
+} 
 
-export default Profiles
+        export default Profiles
+   

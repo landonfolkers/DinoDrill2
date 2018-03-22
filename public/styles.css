@@ -3,7 +3,7 @@ html {
     padding: 0;
   }
   
-  body {
+  #mainbody {
     margin: 0 30px 0 30px;
     padding: 0;
     font-family: sans-serif;
@@ -43,7 +43,7 @@ html {
     grid-row: 2/3;
   }
   
-  main section {
+  main {
     padding: 0 20px 0 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, x100%);
