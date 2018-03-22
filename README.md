@@ -22,6 +22,6 @@
 2. Host your app locally on port `8080`.
 3. Navigate to this folder and run `npm test`.
 
-#### Deployed Link
+http://dinodrill2.surge.sh/
 
-#### Framework of choice
+React
