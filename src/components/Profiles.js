@@ -17,7 +17,8 @@ class Profiles extends Component {
             .then(dinosaurs => {
                 let dinos = JSON.parse(JSON.stringify(dinosaurs))
                 dinos.map((dino) => {
-                    return dino.SkillsListVisible = true
+                    dino.SkillsListVisible = true
+                    return dino.SkillsListVisible
                 })
                 this.setState({
                     dinos

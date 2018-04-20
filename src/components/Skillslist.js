@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-export default function Skillslist({profile}) {
+export default function Skillslist({ profile }) {
     return <section className="skills-container">
-        <h4>Skills</h4> 
+        <h4>Skills</h4>
         <ul>
             {profile.skills.map(skill => <li className="skills-list" key={skill}>
-            {skill}</li>
+                {skill}</li>
             )}
-            </ul>
-      </section>
+        </ul>
+    </section>
 }
